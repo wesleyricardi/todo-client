@@ -32,15 +32,25 @@ function createTask(title: string) {
   let taskContainer = document.createElement("li");
   let checkBox = document.createElement("input");
   let label = document.createElement("label");
+  let deleteButton = document.createElement("button");
 
   checkBox.type = "checkbox";
 
   label.innerText = title;
 
+  deleteButton.innerText = "Delete";
+  deleteButton.className = "delete";
+  deleteButton.addEventListener("click", () => deleteTask(taskContainer));
+
   taskContainer.appendChild(checkBox);
   taskContainer.appendChild(label);
+  taskContainer.appendChild(deleteButton);
 
   return taskContainer;
+}
+
+function deleteTask(taskContainer: HTMLLIElement) {
+  tasksContainer?.removeChild(taskContainer);
 }
 
 export {};
