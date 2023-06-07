@@ -1,0 +1,10 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(46, 46, 46);
+  color: rgb(244, 244, 244);
+  font-family: sans-serif;
+  padding: 30px 10px;
+}
