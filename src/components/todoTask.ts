@@ -19,6 +19,7 @@ export class TodoTask extends HTMLElement {
             e.type = "checkbox";
             e.id = task_id;
             e.checked = completed;
+            e.required = true;
             e.addEventListener("change", async () => {
                 const TaskUpdatedSuccessfuly = await this.tasksList.updateTask({ id: Number(task_id), title: undefined, completed: e.checked })
                 if (!TaskUpdatedSuccessfuly) {

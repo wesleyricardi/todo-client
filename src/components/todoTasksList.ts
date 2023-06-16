@@ -60,7 +60,8 @@ export class TodoTasksList extends HTMLElement {
             ul {
                 list-style: none;
                 margin: 0 auto;
-                width: clamp(100px, 100%, 500px);
+                max-width: 500px;
+                padding: 0px
             }
         `
     }

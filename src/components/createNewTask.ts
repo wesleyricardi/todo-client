@@ -26,7 +26,7 @@ export class CreateNewTask extends HTMLElement {
               
             div > input {
                 height: 30px;
-                width: 250px;
+                width: max-content;
                 padding: 10px 20px;
                 border: none;
             }
