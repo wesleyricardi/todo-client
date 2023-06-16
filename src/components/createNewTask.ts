@@ -12,26 +12,26 @@ export class CreateNewTask extends HTMLElement {
 
     get styles() {
         return /*css*/`
-            div {
+            form {
                 width: clamp(100px, 100%, 600px);
                 margin: 0 auto 20px;
                 text-align: center;
             }
 
-            div > label {
+            form > label {
                 display: block;
                 font-size: 30px;
                 margin-bottom: 10px;
             }
               
-            div > input {
+            form > input {
                 height: 30px;
                 width: max-content;
                 padding: 10px 20px;
                 border: none;
             }
               
-            div > button {
+            form > button {
                 height: 50px;
                 width: 100px;
                 padding: 10px 20px;
@@ -50,6 +50,7 @@ export class CreateNewTask extends HTMLElement {
         const input = createElement("input", (e) => {
             e.type = "text";
             e.id = "new-task-input";
+            e.required = true;
             e.addEventListener("keypress", async (event) => {
                 if (event.key !== "Enter") return
                 const newTask = await this.todo.createTask(e.value);
@@ -65,16 +66,16 @@ export class CreateNewTask extends HTMLElement {
         })
         const button = createElement("button", (e) => {
             e.innerText = "CRIAR";
-            e.addEventListener("click", async () => {
-                const newTask = await this.todo.createTask(input.value);
-                if (newTask) {
-                    this.todo.TasksList?.addNewTask(newTask);
-                    input.value = "";
-                }
-            })
         })
 
-        const container = createElement("div", undefined, [label, input, button]);
+        const container = createElement("form", (element) => element.addEventListener("submit", async (event) => {
+            event.preventDefault()
+            const newTask = await this.todo.createTask(input.value);
+            if (newTask) {
+                this.todo.TasksList?.addNewTask(newTask);
+                input.value = "";
+            }
+        }), [label, input, button]);
         this.shadowRoot.appendChild(container);
     }
 }
