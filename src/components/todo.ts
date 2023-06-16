@@ -2,13 +2,14 @@ import { TodoTasksList } from "./todoTasksList";
 import { CreateNewTask } from "./createNewTask";
 import createElement from "../utils/createElement";
 
+
 export type Task = {
     id: number;
     title: string;
     completed: boolean;
 };
 
-const API_HOST = "http://localhost:3000";
+const API_HOST = "https://todo-server-lime-chi.vercel.app";
 
 export class Todo extends HTMLElement {
     TasksList?: TodoTasksList;
